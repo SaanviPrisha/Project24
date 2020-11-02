@@ -1,10 +1,10 @@
 const Engine = Matter.Engine;
-const World = Matter.World;
+const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
 var paperBall;
-var box1, box2, box3;
+var box1, box2, box3, ground;
 
 function setup() {
     createCanvas(800, 700);
@@ -13,16 +13,14 @@ function setup() {
     world = engine.world;
 
     //Create the Bodies Here.
-    paperBall = new Paper(50, 200);
-    box1 = new Trashcan(600, 630, 200, 20);
-    box2 = new Trashcan(490,590,20,100);
-    box3 = new Trashcan(710,590,20,100);
+    paperBall = new Paper(50, 220);
+    box1 = new Trashcan(600, 650, 200, 50);
+    box2 = new Trashcan(490,620,50,100);
+    box3 = new Trashcan(710,620,50,100);
     
-    groundSprite=createSprite(width/2, height-35, width,10);
-    groundSprite.shapeColor=color(0,0,255);
-    ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
-     World.add(world, ground);
+    ground = new Trashcan(400, 670, 800, 40);
 }
+
 function draw() {
   rectMode(CENTER);
   background(0);
@@ -32,12 +30,10 @@ function draw() {
   box1.display();
   box2.display();
   box3.display();
-
-  drawSprites();
- 
+  ground.display();
 }
 function keyPressed() {
     if(keyCode == 38) {
-        Matter.Body.applyForce(paperBall.body, paperBall.body,{x: 65, y:-65});
+        Matter.Body.applyForce(paperBall.body, paperBall.body.position,{x: 55, y:-55});
     }
 }

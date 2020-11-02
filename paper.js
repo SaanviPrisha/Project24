@@ -16,6 +16,10 @@ class Paper{
     }
     display(){
         ellipseMode(RADIUS)
-        ellipse(this.body.position.x,this.body.position.y, 20, 20);
+        push();
+        translate(this.body.position.x,this.body.position.y)
+        rotate(this.body.angle)
+        ellipse(0,0, 20, 20);
+        pop();
     }
 }
